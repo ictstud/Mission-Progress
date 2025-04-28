@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/IMAGES/logo-f.png" type="image/png">
+    <title>Mission: Progress (Sytem Admin)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/CSS/SysAdmin.css">
+</head>
+<body>
+
+    <div class="layout-container">
+        <div class="side-nav">
+            <div class="nav-item active" id="home-nav" title="Home"><img src="/IMAGES/dashboard.png"></div>
+            <div class="nav-item" id="files-nav" title="Manage Accounts"><img src="/IMAGES/account.png"></div>
+            <div class="nav-item" id="analytics-nav" title="Verify Badges"> <img src="/IMAGES/medal.png"> </div>
+            <div class="nav-item" id="calendar-nav" title="Messages"><img src="/IMAGES/envelope.png"></div>
+            <div class="nav-item" id="timer-nav" title="Log Out"> <img src="/IMAGES/logout.png"> </div>
+        </div>  
+        <div class="main-content">
+            <div class="container" >
+                <div id="home-page" class="page active">
+                    <div class="profile-box"> <!--Start of Dashboard  -->
+                        <p class="dashboard-title"><i>Dashboard</i></p>
+                        <div class="profile-right">
+                            <div class="profile-info">
+                                <h4>Alexa</h4>
+                                <p>System Administrator</p>
+                            </div>
+                            <div class="profile-avatar">
+                                <img src="/IMAGES/profile-alexa.jpg" alt="Profile Picture">
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                     <div class="admin-dashboard"> 
+                        <div class="admin-header">
+                            <div class="admin-greeting">
+                                <h2>Hi, Alexa!</h2>
+                                <p><i> Let's take a look at your activity today.</i></p>
+                            </div>
+                        </div>
+                    
+                        <div class="admin-stats">
+                            <div class="stat-card">
+                                <h3>3</h3>
+                                <p>Account Approval</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3>3</h3>
+                                <p>New Request</p>
+                            </div>
+                        </div>
+                    
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <img src="/IMAGES/avatar1.jpg" alt="User Avatar">
+                                <p><strong>Anya_01</strong> sent a request for account approval.</p>
+                            </div>
+                            <div class="activity-item">
+                                <img src="/IMAGES/avatar2.png" alt="User Avatar">
+                                <p><strong>yujiii</strong> sent a request for account approval.</p>
+                            </div>
+                            <div class="activity-item">
+                                <img src="/IMAGES/avatar3.jpg" alt="User Avatar">
+                                <p><strong>mitsuri❣️</strong> sent a request for account approval.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!--End of Dashboard-->
+
+                <!-- Manage Accounts Page -->
+                <div id="folders-page" class="page">
+                    <div class="profile-box"> <!--Header for Every Page  -->
+                        <p class="dashboard-title"><i>Manage Accounts</i></p>
+                        <div class="profile-right">
+                            <div class="profile-info">
+                                <h4>Alexa</h4>
+                                <p>System Administrator</p>
+                            </div>
+                            <div class="profile-avatar">
+                                <img src="/IMAGES/profile-alexa.jpg" alt="Profile Picture">
+                            </div>
+                        </div>
+                    </div> 
+                    <hr> <!--Until here-->
+                    <div class="account-management-container">
+                        <div class="button-group">
+                          <button id="approvalBtn" class="active">New Account Approval</button>
+                          <button id="toggleBtn">Deactivate/Activate Account</button>
+                        </div>
+                    
+                        <div id="approvalSection" class="account-section active">
+                          <ul class="account-list1 approval-list">
+                            <li><img src="/IMAGES/avatar1.jpg"> <strong>Anya_01</strong> sent a request for account approval.</li>
+                            <li><img src="/IMAGES/avatar2.png"><strong>yujiii</strong> sent a request for account approval.</li>
+                            <li> <img src="/IMAGES/avatar3.jpg"><strong>mitsuri❣️</strong> sent a request for account approval.</li>
+                          </ul>
+                        </div>
+                    
+                        <div id="toggleSection" class="account-section">
+                          <ul class="account-list">
+                            <li><div class="acct-list-content"><img src="/IMAGES/avatar1.jpg"> <strong>Anya_01</strong>is currently: <strong>Active</strong> </div>
+                                 <button class="deactivate">Deactivate</button>
+                            </li>
+                            <li><div class="acct-list-content"><img src="/IMAGES/avatar2.png"><strong>yujiii</strong> is currently: <strong>Inactive</strong> </div>
+                                 <button class="activate">Activate</button>
+                            </li>                        
+                          </ul>
+                        </div>
+                      </div>
+                </div>
+                    
+                <!-- Verify Badges Page -->
+                <div id="analytics-page" class="page">
+                    <div class="profile-box"> <!--Header for Every Page  -->
+                        <p class="dashboard-title"><i>Verify Badges</i></p>
+                        <div class="profile-right">
+                            <div class="profile-info">
+                                <h4>Alexa</h4>
+                                <p>System Administrator</p>
+                            </div>
+                            <div class="profile-avatar">
+                                <img src="/IMAGES/profile-alexa.jpg" alt="Profile Picture">
+                            </div>
+                        </div>
+                    </div> 
+                    <hr> <br> <!--Until here--> 
+                        <div class="badge-card">
+                          <div class="profile-pic">
+                            <img src="/IMAGES/avatar1.jpg" alt="User01">
+                          </div>
+                          <div class="badge-info">
+                            <h3>Anya_01</h3>
+                            <hr class="divider">
+                            <p>Achievement: Completed 30 Day Task Challenge</p>
+                            <div class="badge-status">
+                              <label>Status: For Verification</label>
+                              <select>
+                                <option>For Verification</option>
+                                <option>Granted</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                    
+                        <div class="badge-card">
+                          <div class="profile-pic">
+                            <img src="/IMAGES/avatar2.png" alt="User02">
+                          </div>
+                          <div class="badge-info">
+                            <h3>yujiii</h3>
+                            <hr class="divider">
+                            <p>Achievement: Ranked Top 1 in Productivity</p>
+                            <div class="badge-status">
+                              <label>Status: For Verification</label>
+                              <select>
+                                <option>For Verification</option>
+                                <option>Granted</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                    
+                        <div class="badge-card">
+                          <div class="profile-pic">
+                            <img src="/IMAGES/avatar3.jpg" alt="User03">
+                          </div>
+                          <div class="badge-info">
+                            <h3>mitsuri❣️</h3>
+                            <hr class="divider">
+                            <p>Achievement: Completed 100% Task Completion Streak</p>
+                            <div class="badge-status">
+                              <label>Status: Granted</label>
+                              <select>
+                                <option>For Verification</option>
+                                <option selected>Granted</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                </div>
+                
+                <!-- Messages Page -->
+                <div id="schedule-page" class="page">
+                    <div class="profile-box"> <!--Header for Every Page  -->
+                        <p class="dashboard-title"><i>Messages</i></p>
+                        <div class="profile-right">
+                            <div class="profile-info">
+                                <h4>Alexa</h4>
+                                <p>System Administrator</p>
+                            </div>
+                            <div class="profile-avatar">
+                                <img src="/IMAGES/profile-alexa.jpg" alt="Profile Picture">
+                            </div>
+                        </div>
+                    </div> 
+                    <hr> <!--Until here-->
+                    <div class="messages-container">
+                    <div class="button-group">
+                      <button id="reportBtn" class="active">Report a Problem</button>
+                      <button id="featureBtn">Request a Feature</button>
+                    </div>
+                
+                    <div id="reportSection" class="message-section active">
+                      <ul class="message-list">
+                        <li data-user="Anya_01" data-message="I don't have any problem to report just wanna test this out mwehehehhe." data-time="3:00 PM">
+                          <div class="message-info">
+                            <div class="profile-thumb"><img src="/IMAGES/avatar1.jpg" alt="User01"></div>
+                            <div class="message-txt">
+                              <strong>Anya_01</strong>
+                              <small>I don't have...</small>
+                            </div>
+                          </div>
+                          <div class="message-time">3:00 PM</div>
+                        </li>
+                        <li data-user="yujiii" data-message="man can you fix the folders page, having some issues with uploading an image ngl " data-time="3:15 PM">
+                          <div class="message-info">
+                            <div class="profile-thumb"><img src="/IMAGES/avatar2.png" alt="User02"></div>
+                            <div class="message-txt">
+                              <strong>yujiii</strong>
+                              <small>man can you fix...</small>
+                            </div>
+                          </div>
+                          <div class="message-time">3:15 PM</div>
+                        </li>
+                      </ul>
+                    </div>
+                
+                    <div id="featureSection" class="message-section">
+                      <ul class="message-list">
+                        <li data-user="mitsuri❣️" data-message="Is it possible to also add themes? like we can select themes and suchhh" data-time="4:00 PM">
+                          <div class="message-info">
+                            <div class="profile-thumb"><img src="/IMAGES/avatar3.jpg" alt="User03"></div>
+                            <div class="message-txt">
+                              <strong>mitsuri❣️</strong>
+                              <small>Is it possible to...</small>
+                            </div>
+                          </div>
+                          <div class="message-time">4:00 PM</div>
+                        </li>
+                        <li data-user="xx_mizuki_xx" data-message="Hiiii! xoxo, can you guys pls add a dark modeee? it would really help a night owl like mee" data-time="4:30 PM">
+                          <div class="message-info">
+                            <div class="profile-thumb"><img src="/IMAGES/avatar4.jpg" alt="User04"></div>
+                            <div class="message-txt">
+                              <strong>xx_mizuki_xx</strong>
+                              <small>Hiiii! xoxo, can you...</small>
+                            </div>
+                          </div>
+                          <div class="message-time">4:30 PM</div>
+                        </li>
+                      </ul>
+                    </div>
+                 </div>
+                
+                  <!-- Modal -->
+                  <div id="messageModal" class="message-modal">
+                    <div class="message-modal-content">
+                      <div class="modal-header" id="modalUser"></div>
+                      <div class="modal-body" id="modalMessage">Message goes here</div>
+                      <div class="modal-actions">
+                        <input type="text" id="replyInput" placeholder="Type your reply..." style="flex-grow: 1; padding: 0.5rem; border-radius: 8px; border: 1px solid #ccc;">
+                        <button class="reply-btn" id="sendReplyBtn">Reply</button>
+                        <button class="delete-btn">Delete</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Log Out Page -->
+                <div id="timer-page" class="page">
+                    
+                </div>
+        </div>
+    </div>
+    <!-- Logout Modal -->
+    <div id="logoutModal"> 
+        <div class="modal-content"> 
+            <div class="close-icon" id="closeLogoutModal"></div>
+            <hr class="divider-logout">
+            <p>Are you sure you want to log out?</p>
+            <hr class="divider-logout">
+            <div class="modal-actions">
+                <button id="confirmLogout">CONFIRM</button>
+                <button id="cancelLogout">CANCEL</button>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- ------------------------JS HERE---------------------------- -->
+ <script>
+    // Navigation functionality (Main JS Functionality)
+    document.addEventListener("DOMContentLoaded", function () {
+  const navItems = document.querySelectorAll('.nav-item');
+  const pages = document.querySelectorAll('.page');
+
+  const pageMapping = {
+    'home-nav': 'home-page',
+    'files-nav': 'folders-page',
+    'analytics-nav': 'analytics-page',
+    'calendar-nav': 'schedule-page',
+    'timer-nav': 'timer-page',
+  };
+
+  navItems.forEach(item => {
+    item.addEventListener('click', function () {
+      const navId = this.id;
+
+      if (navId === 'timer-nav') {
+        document.getElementById('logoutModal').style.display = 'flex';
+        return;
+      }
+
+      const targetPageId = pageMapping[navId];
+
+      pages.forEach(page => page.classList.remove('active'));
+
+      const targetPage = document.getElementById(targetPageId);
+      if (targetPage) {
+        targetPage.classList.add('active');
+      }
+
+      navItems.forEach(nav => nav.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  document.getElementById('timer-nav').addEventListener('click', function () {
+    document.getElementById('logoutModal').style.display = 'flex'; // Show the modal
+});
+
+document.getElementById('confirmLogout').addEventListener('click', function () {
+    alert('Logging out...');
+    document.getElementById('logoutModal').style.display = 'none'; // Hide the modal
+});
+
+document.getElementById('cancelLogout').addEventListener('click', function () {
+    document.getElementById('logoutModal').style.display = 'none'; // Hide the modal
+});
+});
+
+// Close Logout Modal on clicking outside the modal content
+document.getElementById('logoutModal').addEventListener('click', function (e) {
+    if (e.target === this) {
+        this.style.display = 'none';
+    }
+});
+
+document.getElementById('closeLogoutModal').addEventListener('click', function () {
+    document.getElementById('logoutModal').style.display = 'none'; // Hide the modal
+});
+
+// -----------------------Account Management Functionality -------------------------
+const approvalBtn = document.getElementById('approvalBtn');
+    const toggleBtn = document.getElementById('toggleBtn');
+    const approvalSection = document.getElementById('approvalSection');
+    const toggleSection = document.getElementById('toggleSection');
+
+    approvalBtn.addEventListener('click', () => {
+      approvalBtn.classList.add('active');
+      toggleBtn.classList.remove('active');
+      approvalSection.classList.add('active');
+      toggleSection.classList.remove('active');
+    });
+
+    toggleBtn.addEventListener('click', () => {
+      toggleBtn.classList.add('active');
+      approvalBtn.classList.remove('active');
+      toggleSection.classList.add('active');
+      approvalSection.classList.remove('active');
+    });
+
+// -----------------------Messages Functionality -------------------------
+const reportBtn = document.getElementById('reportBtn');
+    const featureBtn = document.getElementById('featureBtn');
+    const reportSection = document.getElementById('reportSection');
+    const featureSection = document.getElementById('featureSection');
+
+    reportBtn.addEventListener('click', () => {
+      reportBtn.classList.add('active');
+      featureBtn.classList.remove('active');
+      reportSection.classList.add('active');
+      featureSection.classList.remove('active');
+    });
+
+    featureBtn.addEventListener('click', () => {
+      featureBtn.classList.add('active');
+      reportBtn.classList.remove('active');
+      featureSection.classList.add('active');
+      reportSection.classList.remove('active');
+    });
+
+    const modal = document.getElementById('messageModal');
+    const modalUser = document.getElementById('modalUser');
+    const modalMessage = document.getElementById('modalMessage');
+    const replyInput = document.getElementById('replyInput');
+    const sendReplyBtn = document.getElementById('sendReplyBtn');
+
+    document.querySelectorAll('.message-list li').forEach(item => {
+      item.addEventListener('click', () => {
+        modalUser.textContent = item.dataset.user;
+        modalMessage.textContent = item.dataset.message ;
+        modal.style.display = 'flex';
+        replyInput.value = '';
+      });
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+
+    sendReplyBtn.addEventListener('click', () => {
+      const reply = replyInput.value.trim();
+      if (reply) {
+        modal.style.display = 'none';
+      }
+    });
+ </script>
+</html>

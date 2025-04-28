@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/IMAGES/logo-f.png" type="image/png">
+    <title>Forgot Password</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/CSS/MainStyle.css">
+</head>
+<body>
+    <div class="container-pw">
+        <h2>Forgot Password</h2>
+        <img class="lock-icon" src="https://cdn-icons-png.flaticon.com/512/3064/3064155.png" alt="Lock Icon">
+        <p>Select what contact details should be used to reset your password.</p>
+        
+        <label class="option">
+            <input type="radio" name="reset-option" value="phone" onclick="enableButton()">
+            <div class="checkmark"></div>
+            Contact Number: <br> +63 123-4567-890
+        </label>
+
+        <label class="option">
+            <input type="radio" name="reset-option" value="email" onclick="enableButton()">
+            <div class="checkmark"></div>
+            Email: <br> visionimpossible@gmail.com
+        </label>
+
+        <button class="fp-btn btn" id="continueBtn" disabled><a href="/HTML/LogIn.html">Cotinue</a></button>
+    </div>
+
+    <script>
+        function enableButton() {
+            document.getElementById("continueBtn").disabled = false;
+        }
+    </script>
+</body>
+</html>

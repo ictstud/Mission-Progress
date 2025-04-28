@@ -1,0 +1,2071 @@
+:root{
+    --main-clr: #ff8fa3;
+    --sub-clr: #535a42;
+    --accent-clr: #ff4d6d;
+    --btn-color: #ff8fa3;
+    --btn-under-color: #cb5466;
+    --btn-hover-color: #f76f88; 
+    --border-green: #668866;
+    --green-box: #94bc8e;
+    --checkmark: #86be6c;
+}
+/* ---------- Main Styling ------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    background-image: url("/IMAGES/main-bg-img.png");
+    background-size: cover;
+}
+
+.layout-container {
+    display: flex;
+    width: 100%;
+}
+
+.side-nav {
+    width: 100px;
+    background-color: var(--main-clr);
+    min-height: 100vh;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+/* --- Side Bar --- */
+.nav-item, img { 
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.nav-item:hover img{
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.nav-item.active img {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+ 
+.main-content {
+    margin-left: 80px;
+    width: calc(100% - 80px);
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+@media (max-width: 768px) {
+    .side-nav {
+        width: 60px;
+    }
+
+    .main-content {
+        margin-left: 60px;
+        width: calc(100% - 60px);
+    }
+
+    .nav-item {
+        font-size: 20px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .schedule {
+        flex-direction: row;
+    }
+
+    .column {
+        min-width: 70px;
+    }
+
+    .class-name {
+        font-size: 0.9em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+
+/* Hidden content for other pages */
+.page {
+    display: none;
+    padding: 20px;
+    height: 100%;
+}
+
+.page.active {
+    display: block;
+}
+
+.page-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #7b8d63;
+}
+
+.page-content {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* -----------------------------------------------Schedule Page Styling----------------------------------------------- */
+.header {
+    padding: 10px;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    color: #7b8d63;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.date {
+    color: #ff6b81;
+    font-size: 14px;
+}
+
+.add-button {
+    width: 40px;
+    height: 40px;
+    background-color: #7b8d63;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+    .add-button:hover {
+        transform: scale(1.1);
+    }
+/* Edit button for Schedule page */
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+}
+.edit-button {
+    color: var(--sub-clr);
+    cursor: pointer;
+    align-items: center;
+    width: 30px;
+    height: 40px;
+    margin-top: -35px;
+    margin-right: 20px;
+}
+
+.edit-button:hover {
+    color: var(--main-clr);
+    transform: scale(1.1);
+    transition: .2s;
+    text-decoration: underline;
+}
+
+.program-info {
+    padding: 10px 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.program-title {
+    color: #ff6b81;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.program-subtitle {
+    color: #ff6b81;
+    font-size: 12px;
+}
+
+.week-days {
+    display: flex;
+    padding: 10px 20px;
+    justify-content: space-between;
+}
+
+.day {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: #888;
+}
+
+.day.active {
+    background-color: #ffb8c1;
+    border-radius: 50%;
+    color: white;
+}
+
+.day.current-day::after { /*Newly added*/
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 2px solid #ffb8c1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.schedule {
+    padding: 10px;
+    height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.column {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.class-item {
+    background-color: #f9d5ca;
+    border-radius: 15px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 80px;
+    margin-bottom: 5px;
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+    .class-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .class-item.green {
+        background-color: #bcda99;
+    }
+
+.Instructor { /*From .class-code to .Instructor*/
+    font-weight: bold;
+    text-align: center;
+}
+
+.class-time {
+    font-size: 12px;
+    text-align: center;
+}
+
+/* Added this rule to center class names(NEW)*/
+.class-name {
+    text-align: center;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.day-label { /*New CSS*/
+    text-align: center;
+    font-weight: bold;
+    color: #7b8d63;
+    padding: 5px 0;
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 5px; 
+}
+
+    .day-label.current-day {
+        background-color: #4285f4;
+        color: white;
+        font-weight: bold;
+        border-radius: 50%;
+    }
+
+
+/*----------------------------------Modal styles (Pop Up for Schedule Page) & Edit Modal Pop Up (Schedule page)------------------------------------------------------ */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    background-color: white;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 350px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-title {
+    font-size: 18px;
+    color: var(--main-clr);
+    font-weight: bold;
+    text-align: center !important;
+    display: block;
+}
+
+.modal-close {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #888;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 12px;
+    color: var(--main-clr) !important;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.confirm-button {
+    width: 100%;
+    padding: 12px;
+    background: var(--btn-color);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-top: 1rem;
+    box-shadow: 0 4px var(--btn-under-color);
+}
+
+.confirm-button:hover {
+    background-color: var(--btn-hover-color);
+}
+
+.confirm-button:active {
+    box-shadow: 0 2px var(--btn-under-color);
+    transform: translateY(2px);
+}
+/* ---------------------------------------Add New Schedule CSS--------------------------------------------------- */
+#calendar-page {
+    display: block;
+}
+/* New Schedule Page */
+ .new-schedule-page {
+    display: none;
+    height: 100%;
+    position: relative;
+}
+
+    .new-schedule-page.active {
+        display: block;
+    }
+
+.back-button {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #7b8d63;
+}
+
+.schedule-form {
+    padding: 10px 20px;
+}
+
+.image-placeholder {
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(to bottom, #87CEEB, #8FBC8F);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.days-selection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    justify-content: center;
+}
+
+.day-option {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+    .day-option.selected {
+        background-color: #ffb8c1;
+        color: white;
+        border-color: #ffb8c1;
+    }
+
+.time-selection {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.colors-selection {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.color-option {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.create-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ff6b81;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 20px;
+}
+
+/* -------------------------------Analytics Page CSS -------------------------------------- */
+ .finance-container {
+    height: 100%;
+}
+
+.main-header {
+    color: #7b8d63;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.finance-summary {
+    background-color: #ffb8c1;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.summary-label {
+    color: #444;
+}
+
+.finance-graph {
+    text-align: center;
+    margin-bottom: 20px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30,10 Q40,20 30,30 T30,50 T30,70 T30,90' stroke='%23e0e0e0' fill='none' stroke-width='0.5'/%3E%3Cpath d='M70,10 Q60,20 70,30 T70,50 T70,70 T70,90' stroke='%23e0e0e0' fill='none' stroke-width='0.5'/%3E%3C/svg%3E");
+}
+
+.graph-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.bar-chart {
+    display: flex;
+    align-items: flex-end;
+    height: 120px;
+    gap: 15px;
+}
+
+.bar {
+    width: 30px;
+    background-color: #e0e0c7;
+    border-radius: 4px 4px 0 0;
+}
+
+.arrow {
+    width: 100px;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.form-group-A {
+    margin-bottom: 15px;
+}
+
+.form-group-A label {
+    display: block;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.form-control-A {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.finance-list {
+    margin-top: 20px;
+}
+
+.finance-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.finance-icon {
+    width: 36px;
+    height: 36px;
+    background-color: #bcda99;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+    color: white;
+}
+
+.finance-details {
+    flex: 1;
+}
+
+.finance-amount {
+    font-weight: bold;
+    color: #7b8d63;
+}
+
+.finance-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+}
+
+.finance-tab {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    cursor: pointer;
+    background-color: #f5f5f5;
+    color: #666;
+    font-weight: bold;
+}
+
+    .finance-tab.active {
+        background-color: #7b8d63;
+        color: white;
+    }
+
+.tab-content {
+    display: none;
+}
+
+    .tab-content.active {
+        display: block;
+    }
+
+.income-list, .expense-list, .goals-list {
+    margin-top: 10px;
+}
+
+.finance-entry {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.entry-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #bcda99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.entry-details {
+    flex: 1;
+}
+
+.entry-name {
+    font-weight: bold;
+}
+
+.entry-amount {
+    color: #7b8d63;
+}
+
+.edit-entry {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.goals-progress {
+    background-color: #f0f0f0;
+    height: 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar-goal {
+    height: 100%;
+    background-color: #bcda99;
+    width: 0;
+}
+
+.goal-record {
+    background-color: #bcda99;
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.goal-amount {
+    font-weight: bold;
+}
+
+.goal-status {
+    font-size: 12px;
+    color: #444;
+}
+
+.total-saved {
+    background-color: #bcda99;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+    color: #444;
+}
+
+/* ---------------------------------Calculator CSS---------------------------------------------- */
+.calculator {
+    position: fixed;
+    bottom: 0;
+    left: 80px;
+    width: calc(100% - 80px);
+    max-width: 400px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 15px 15px 0 0;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    display: none;
+}
+
+.calculator-display {
+    background-color: #ffb8c1;
+    padding: 15px;
+    text-align: right;
+    font-size: 24px;
+    border-radius: 15px 15px 0 0;
+    margin-bottom: 1px;
+}
+
+.calculator-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+}
+
+.calc-button {
+    background-color: #ffdddd;
+    border: none;
+    padding: 15px 0;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+    .calc-button:hover {
+        background-color: #ffc6c6;
+    }
+
+.calc-button-operator {
+    background-color: #ff9999;
+}
+/* -----Recent Transactions----------- */
+.recent-transactions {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    max-height: 150px;
+    overflow-y: auto;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+.recent-transactions-header {
+    font-size:  14px;
+    color: #555;
+    margin-bottom: 8px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.transaction-item {
+    display:flex;
+    justify-content: space-between;
+    padding: 16px 0px;
+    border-bottom: 1px solid #eee;
+    font-size:  13px;
+}
+    .transaction-item:last-child {
+        border-bottom: none
+    }
+
+.transaction-details {
+    display: flex;
+    align-items: center;
+}
+
+.transaction-icon {
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+.transaction-category {
+    font-weight: 500;
+}
+
+.transaction-description {
+    font-size: 11px;
+    color: #777;
+    margin-top: 2px;
+}
+
+.transaction-amount {
+    font-weight: bold;
+}
+
+.income-amount {
+    color: #FCAf50;
+}
+
+.expense-amount {
+    color: #f44336;
+}
+
+.transaction-time {
+    font-size: 10px;
+    color: #999;
+    margin-top: 2px;
+}
+
+.empty-transactions {
+    text-align: center;
+    color: #999;
+    padding: 15px 0;
+    font-style: italic;
+    font-size: 13px;
+}
+
+.clear-all {
+    color: #888;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: normal;
+}
+
+.clear-all:hover {
+    text-decoration: underline;
+}
+/* ----------------------------Create Task CSS--------------------------------------------- */
+.profile-header {
+    background-color: var(--main-clr);
+    color: white;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .profile-text h2 {
+    font-size: 2rem;
+  }
+
+  .profile-text p {
+    font-size: 1.5rem;
+    color: white;
+    margin-bottom: 0;
+  }
+
+  .profile-pic img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin: 5px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .progress-section {
+    margin: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .progress-section label {
+    font-weight: bold;
+    margin-right: 5px;
+    font-size: 1.1rem;
+    color: var(--sub-clr);
+  }
+
+  .progress-bar {
+    flex-grow: 1;
+    height: 30px;
+    border: 2px solid var(--sub-clr);
+    border-radius: 8px;
+    background-color: #f5f5f5;
+    position: relative;
+    margin-right: 10px;
+  }
+
+  /* +todo, all, completed, missed buttons */
+  .buttons { 
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 10px;
+  }
+  .buttons img {  /* add icon beside todo*/
+    height: 10px;
+    width: 10px;
+    margin: 0; 
+}
+    .buttons button {
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Vertically center the content */
+    justify-content: center; /* Center the text and image horizontally */
+    flex: 1 1 80px;
+    padding: 8px;
+    border: 2px solid black;
+    border-radius: 8px;
+    font-weight: bold;
+    background-color: white;
+    cursor: pointer;
+    transition: 0.2s;
+    gap: 5px; /* Add spacing between the text and image */
+}
+  .buttons button:hover {
+    background-color: var(--main-clr);
+    color: white;;
+  }
+  /* styling specific for the todo button */
+    .buttons .todo{
+    background-color: var(--main-clr);
+    box-shadow: 0 3px var(--btn-under-color);
+    border: none;
+    transform: translateY(-2px);
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    }
+    .buttons .todo:hover {
+        background-color: var(--btn-hover-color);
+     }
+    .buttons .todo:active {
+        box-shadow: 0 2px var(--btn-under-color);
+        transform: translateY(2px);
+    }
+
+/* ------------------------------Styling for Create Task Modal (Pop Up)---------------------------*/
+.task-modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    font-family: 'Raleway', sans-serif;
+  }
+  
+  .task-modal-content {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    width: 90%;
+    max-width: 420px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    text-align: center;
+  }
+  
+  .task-close-button {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    font-size: 36px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .task-close-button:hover {
+    cursor: pointer;
+    color: #000;
+  }
+
+  /* Input field */
+  .task-modal-content input[type="text"]  {
+    width: 100%;
+    padding: 0.75rem;
+    margin: 0.5rem 0 1rem 0;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+/* Styled Date Input */
+.task-modal-content input[type="date"] {
+    width: 100%;
+    padding: 0.75rem;
+    margin: 0.5rem 0 1rem 0;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    color: #333;
+    background-color: #fff;
+    font-family: 'Raleway', sans-serif;
+}
+
+.task-modal-content input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: invert(0.5);
+}
+  /* Label and Select */
+  .task-modal-content label {
+    display: block;
+    text-align: left;
+    margin: 0.5rem 0 0.25rem 0;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .task-modal-content select,
+  .task-modal-content input[type="checkbox"] {
+    margin-bottom: 1rem;
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+  
+  /* Type Buttons */
+  .type-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .type-buttons button {
+    flex: 1;
+    margin: 0 5px;
+    padding: 0.5rem;
+    font-size: 14px;
+    border: none;
+    border-radius: 10px;
+    background-color: #f1f1f1;
+    color: #333;
+    transition: all 0.3s ease;
+  }
+  
+  .type-buttons button:hover {
+    background-color: var(--main-clr);
+    color: white;
+  }
+  
+  /* Confirm Button */
+  #confirmButton {
+    margin-top: 1rem;
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--btn-color);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  #confirmButton:hover {
+    background-color: var(--btn-hover-color);
+  }
+  
+
+#createTaskModal {
+  display: none; /* Create task modal is hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+ /* ------------------------------Task List Style------------------------------------------ */
+  .task-list {
+    margin-top: 2rem;
+    background: #f5f5f5;
+    border-radius: 10px;
+    padding: 15px;
+  }
+
+.task-list h3, p{
+    color: var(--sub-clr);
+    text-align: center;
+}
+
+.no-tasks {
+padding-top: 80px;
+font-style: italic;
+color: gray;
+}
+
+  .task-item {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+  }
+  .task-item:last-child {
+    border-bottom: none;
+  }
+  .task-item strong {
+    display: inline-block;
+    width: 90px;
+    color: #555;
+  }
+
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    margin: 10px 0;
+    background-color: #fff; 
+    border: 2px solid var(--sub-clr);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    color: #333;
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 100%;
+}
+
+.task-item:hover {
+    transform: translateY(-3px); 
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); 
+}
+
+.task-item input[type="checkbox"] {
+    margin-right: 15px;
+    transform: scale(1.2); 
+    cursor: pointer;
+}
+
+.task-name {
+    flex: 1;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--main-clr); 
+}
+
+.task-label {
+    margin-left: 15px;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--accent-clr); 
+    background-color: #f9d5ca; /* Light background for label */
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+.task-deadline {
+    margin-left: 15px;
+    font-size: 0.9rem;
+    color: #999;
+    font-weight: bold;
+    background-color: #f5f5f5; /* Light gray background for deadline */
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+/* --------------------- CSS for Folders Page---------------------- */
+/* Searchbox Styles */
+.search-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding: 0 20px;
+    flex-wrap: wrap;
+    }
+
+    .search-box {
+    border: 2px solid #444;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding: 4px 8px;
+    width: 90%;
+    max-width: 500px;
+    background-color: #fff;
+    margin: 0 20px;
+    }
+
+    .search-box img {
+    width: 35px;
+    height: 35px;
+    margin: 3px;
+    border-radius: 8px 0 0 8px;
+    }
+
+    .search-box input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 16px;
+    color: #6e6e58;
+    font-style: italic;
+    }
+
+    .search-container label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: bold;
+    }
+
+    /* Add button folder Styles */
+    .add-folder {
+    display: flex;
+    align-items: center;
+    }
+
+    .add-folder button {
+    background-color: var(--green-box);
+    border: 2px solid var(--sub-clr);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 50px;
+    color: var(--sub-clr);
+    cursor: pointer;
+    }
+
+    .add-folder button:hover {
+    background-color: var(--border-green);
+    }
+
+    .add-folder button:active {
+        transform: translateY(2px);
+    }
+
+    /* Folder Styles */
+    .folders {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    justify-items: center;
+    }
+
+    .folder {
+    padding: 10px;
+    width: 150px;
+    text-align: center;
+    background: none;
+    border: none;
+    position: relative;
+    }
+
+    .folder img {
+    width: 120px;
+    height: 120px;
+    filter: brightness(0) saturate(100%);
+    margin: 0 auto 10px auto;
+    margin-bottom: 10px;
+    border: none;
+    background: none;
+    }
+
+    .folder-title {
+    background-color: #fff4b8;
+    border-radius: 5px;
+    padding: 5px;
+    color: var(--sub-clr);
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    }
+
+    .folder-checkbox {
+    transform: scale(1.3);
+    z-index: 5;
+    color: var(--green-box);
+    }
+
+    /* ----------Modal style for Folders Page ------------------ */
+    /* Modal Styles */
+.modal-folder {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    }
+
+    .modal-content-folder {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 400px;
+    }
+
+    .modal-content-folder h3 {
+    color: var(--accent-clr);
+    margin-bottom: 15px;
+    }
+
+    .color-options {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 0;
+    }
+
+    .color-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    cursor: pointer;
+    }
+
+    .color-circle.selected {
+    border: 2px solid #000;
+    }
+
+    .modal-content-folder input {
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    width: 80%;
+    margin-bottom: 15px;
+    }
+
+    .modal-content-folder button {
+    padding: 10px 30px;
+    background-color: var(--accent-clr);
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    }
+/* ---------------------Styling for Lock-In Page--------------------------------- */
+.button {
+    border: 2px solid #5c5c3d;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 15px auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #fff;
+    width: 90%;
+    max-width: 500px;
+    font-size: 24px;
+    font-weight: bold;
+    color:var(--sub-clr);
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+    }
+
+    .button:hover {
+    background-color: #ffc9d3;
+    transform: scale(1.02);
+    }
+
+    .button img {
+    margin: 8px;
+    width: 40px;
+    height: 40px;
+    }
+
+    .output {
+    text-align: center;
+    font-size: 18px;
+    font-style: italic;
+    color: #333;
+    font-weight: bold;
+    }
+/* Timer popup*/
+.timer-footer {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 100px;
+    width: calc(100% - 100px);
+    background: #f5c4cd;
+    border-top: 2px solid var(--sub-clr);
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    box-sizing: border-box;
+    }
+
+    .timer-footer p {
+    margin: 0 0 10px;
+    font-weight: bold;
+    color: var(--accent-clr);
+    font-size: 18px;
+    }
+    
+    .timer-footer input[type="time"] {
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 50%;
+    margin-bottom: 10px;
+    }
+
+    .popup-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    }
+
+    .popup-buttons button {
+    padding: 6px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: var(--main-clr);
+    color: white;
+    font-weight: bold;
+    }
+
+    .popup-buttons button.cancel {
+    background-color: var(--accent-clr);
+    }
+
+    .accessed-footer {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 100px;
+    width: calc(100% - 100px);
+    background: #ffdae1;
+    border-radius: 30px 30px 0 0;
+    border-top: 2px solid var(--sub-clr);
+    padding: 10px;
+    text-align: center;
+    z-index: 999;
+    box-sizing: border-box;
+    }
+
+    .accessed-popup {
+    text-align: center;
+    font-weight: bold;
+    color: var(--sub-clr);
+    }
+
+    .app-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-content: center;
+    padding: 10px;
+    }
+
+    .app-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--sub-clr);
+    font-weight: bold;
+    }
+    
+    .app-item .plus {
+    border: 2px solid var(--sub-clr);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    transition: var(--main-clr) 0.3s;
+    }
+
+    .app-item .plus:hover {
+    background-color: rgba(83, 90, 66, 0.1);
+    }
+
+/* ----------------------------------------------Settings CSS------------------------------------------------------------*/
+fieldset {
+    margin: 15px;
+}
+
+.edit {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    justify-content: flex-start;
+}
+
+.settings-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--main-clr)
+}
+.Settings-fieldset img {
+    margin-left: 5px;
+    margin-top: 30px;  
+    margin-right: 5px;
+    padding: 0px; 
+    width: 32px;
+    height: 32px;
+    
+}
+.Settings-fieldset{
+    padding: 5px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: 55px;
+    justify-content: flex-start !important;
+    border: 2px solid var(--sub-clr);
+    border-radius: 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+.Settings-fieldset:hover {
+    transition: 0.2s;
+    font-weight: bold;
+    box-shadow: 0 3px var(--sub-clr);
+    transform: translateY(-2px);
+}
+.Settings-fieldset:active {
+    transform: translateY(1px);
+}
+
+.set-page img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.3);
+}
+
+.Settings-fieldset p, .Settings-fieldset a {
+    margin-left: 10px;
+}
+
+.set-page p{
+    text-align: center;
+    font-style: italic;
+}
+
+a:link{
+    text-decoration: none;
+    color: black;
+}
+
+a:visited{
+    color: black;
+}
+
+a:hover{
+    color: black;
+}
+
+a:active{
+    color: black;
+}
+
+.settings-section button {
+    background-color: var(--main-clr);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 5px 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px var(--btn-under-color);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.settings-section button:hover {
+    background-color: var(--btn-hover-color);
+}
+.settings-section button:active {
+    box-shadow: 0 2px var(--btn-under-color);
+    transform: translateY(2px);
+}
+
+/* Settings JS Css */
+#settings-options {
+    display: block;
+  }
+  
+  #settings-options.hidden {
+    display: none;
+  }
+  
+  .settings-section {
+    display: none;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .settings-section.active {
+    display: block;
+  }
+  
+/* ----------------------------------Edit Profile CSS--------------------------------------------------- */
+.container-profile{
+    width: 500px;
+    padding: 2rem;
+    border-radius: 10px;
+    margin: auto;
+}
+.input-group {
+    margin-bottom: 1rem;
+    text-align: left;
+    /* position: relative; */
+}
+.input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--font-sub-clr);
+}
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    /* position: relative; */
+}
+.profile-image-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  width: 100%;
+  text-align: center;
+}
+.profile-image {
+  width: 120px !important;
+  height: 120px !important;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+  background-color: var(--main-clr);
+}
+.profile-image-text {
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #333;
+  text-align: center;
+}
+.submit-button {
+    display: block;
+    margin: 20px auto 30px auto;
+    padding: 10px 40px;
+    background-color:var(--btn-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 4px var(--btn-under-color);
+    transition: background-color 0.3s ease;
+}
+.submit-button:hover {
+    background-color: #ff4d6d;
+}
+/* ----------------------------Feedback CSS--------------------------------- */
+.problem, .feature{
+    border: 2px solid black;
+    border-radius: 10px;
+    text-align: center;
+    margin: 8px;   
+    padding: 10px; 
+    font-size: 25px;   
+}
+
+.problem:hover, .feature:hover{
+    transition: 0.2s;
+    transform: scale(1.02);
+    cursor: pointer;
+}
+
+.problem:active, .feature:active{
+    transform: translateY(2px);
+}
+
+.question {
+    text-align: center;
+    font-size: 20px;
+}
+
+/* ---------------------------------Change Password CSS------------------------- */
+.forgot-password {
+    text-align: right;
+    display: block;
+    font-size: 0.9rem;
+    color: var(--font-accent-clr);
+    text-decoration: none;
+}
+.forgot-password:hover {
+    text-decoration: underline;
+}
+p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.lock-icon {
+    width: 80px;
+    height: 80px;
+  
+    margin: 0 auto 1rem auto;
+}
+
+.option {
+    display: flex;
+    align-items: left;
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.option:hover {
+    border-color: var(--btn-color);
+}
+.option input {
+    display: none;
+}
+.checkmark {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
+input:checked + .checkmark {
+    background: var(--checkmark);
+    border-color: var(--checkmark);
+    color: white;
+    content: "✔";
+}
+.fp-btn:disabled {
+    background: #ccc;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+.fp-btn:hover:not(:disabled) {
+    background: var(--btn-hover-color);
+}
+.fp-btn:active:not(:disabled) {
+    box-shadow: 0 2px #d76b82;
+    transform: translateY(2px);
+}
+/* ------------------------------Achievements CSS------------------------ */
+.badge-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 15px;
+}
+.badge-container {
+    background-color: #ffcccb;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    flex: 0 0 30%;
+    box-sizing: border-box;
+    min-width: 200px;
+}
+.badge-wrapper .badge-container:first-child {
+    background-color: #d4edda; 
+    border: 2px solid #a0e2b0;
+}
+.badge-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+.badge-icon {
+    margin: 10px auto;
+    width: 60px;
+    height: 60px;
+}
+.badge-description {
+    font-size: 16px;
+    color: #666;
+}
+.profile-image {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 15px;
+}
+ .username  {
+    font-size: 1.5em;
+    margin: 0;
+    color: #333 !important;
+}
+.status {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 10px;
+}
+.achievements {
+    background-color: #f4c0cb; 
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+}
+.user-card {
+    background-color: #ffcccb;
+    border-radius: 15px;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+/* -----------------------------Erase Content CSS----------------------- */
+.back img{
+    height: 50px;
+    width: 50px;
+}
+.back {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    justify-content: flex-start;
+}
+hr {
+    border: none;
+    border-top: 3px solid #444;
+    margin: 20px 0;
+    height: 0;
+    width: 100%;
+    display: block;
+}
+.Noti {
+    text-align: center;
+    align-self: center;
+}
+.thick-underline {
+    border-bottom: 2px solid black;
+    display: inline-block;
+    background-color: transparent !important;
+}
+.red-text {
+    color: red;
+    font-weight: bold;
+}
+.green-text {
+    color: green;
+    font-weight: bold;
+}
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 20px;
+}
+.button-group button {
+    margin-right: 0;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+.btn-submit {
+    background-color: #ff7c8c;
+}
+.btn-cancel {
+    background-color: white !important;
+    border: 2px solid black !important;
+    color: black !important;
+    box-shadow: 0 4px black !important;
+}
+/* ------------------------------------------Feedback CSS-------------------------------- */
+.feedback-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  .feedback-modal {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    position: relative;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+  }
+  
+  .feedback-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #999;
+  }
+  
+  .feedback-title {
+    font-weight: 800;
+    font-size: 20px;
+    color: #ef6585;
+    margin-bottom: 15px;
+  }
+  
+  textarea#feedbackText {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    resize: none;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    font-family: inherit;
+    margin-bottom: 15px;
+  }
+  
+  .attach-label {
+    display: block;
+    font-size: 13px;
+    color: #666;
+    cursor: pointer;
+    margin-bottom: 15px;
+  }
+
+  .attach-label:hover{
+    text-decoration: underline;
+  }
+  
+  .attach-label input {
+    display: none;
+  }
+  
+  .feedback-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  
+  .send-btn, .cancel-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .send-btn {
+    background-color: var(--main-clr);
+    box-shadow: 0 3px var(--btn-under-color);
+    color: white;
+  }
+
+  .send-btn:hover {
+    background-color: var(--btn-hover-color);
+  }
+  
+  .send-btn:active {
+    box-shadow: 0 2px var(--btn-under-color);
+    transform: translateY(2px);
+  }
+  
+  .cancel-btn {
+    background-color: #f2f2f2;
+    color: var(--sub-clr);
+    box-shadow: 0 3px darkgrey;
+  }
+
+  .cancel-btn:hover {
+    background-color: #e0e0e0;
+  }
+
+  .cancel-btn:active {
+    box-shadow: 0 2px darkgrey;
+    transform: translateY(2px);
+  }

@@ -1,0 +1,249 @@
+:root {
+    --font-main-clr: #ff8fa3;
+    --font-sub-clr: #535a42;
+    --font-accent-clr: #ff4d6d;
+    --btn-color: #ff8fa3;
+    --btn-under-color: #cb5466;
+    --btn-hover-color: #f76f88;
+    --checkmark: #86be6c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('/IMAGES/main-bg-img.png');
+    background-size: cover;
+    text-align: center;
+}
+.container, .container-pw {
+    width: 400px;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--font-main-clr);
+    text-shadow: 2px 2px 0 rgba(243, 97, 131, 0.2);
+    text-transform: uppercase;
+}
+h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--font-sub-clr);
+}
+
+p {
+    color: var(--font-sub-clr);
+}
+.input-group {
+    margin-bottom: 1rem;
+    text-align: left;
+    /* position: relative; */
+}
+.input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--font-sub-clr);
+}
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    /* position: relative; */
+}
+
+/* Eye Icon Style */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding-right: 40px; /* Add padding to make space for the icon */
+}
+
+.eye-icon {
+    position: absolute;
+    right: 10px; /* Position the icon inside the input field */
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #aaa;
+    font-size: 2rem;
+}
+
+.eye-icon:hover {
+    color: #000; /* Change color on hover for better visibility */
+}
+
+/* Forgot Password Styling */
+.forgot-password {
+    text-align: right;
+    display: block;
+    font-size: 0.9rem;
+    color: var(--font-accent-clr);
+    text-decoration: none;
+}
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--btn-color);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-top: 1rem;
+    box-shadow: 0 4px var(--btn-under-color);
+}
+.btn a {
+    color: white;
+    text-decoration: none;
+}
+.btn:active {
+    box-shadow: 0 2px var(--btn-under-color);
+    transform: translateY(2px);
+}
+.btn:hover {
+    background-color: var(--btn-hover-color);
+}
+.divider {
+    margin: 1.5rem 0;
+    border-bottom: 1px solid #ccc;
+}
+.signup {
+    margin-top: 1rem;
+}
+.signup a {
+    color: var(--font-accent-clr);
+    text-decoration: none;
+    font-weight: bold;
+}
+.signup a:hover {
+    text-decoration: underline;
+}
+.social-login {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.social-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 40px;
+    height: 30px;
+}
+.social-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Create Profile CSS */
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    background: #ff8fa3;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+}
+.profile-pic img {
+    width: 50%;
+    height: 50%;
+}
+
+.profile-pic:hover {
+    cursor: pointer;
+}
+
+/* Forgot Pw CSS */
+.container-pw {
+    width: 350px;
+}
+.lock-icon {
+    width: 80px;
+    margin-bottom: 1rem;
+}
+p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+.option {
+    display: flex;
+    align-items: left;
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: 0.2s;
+    text-align: left;
+}
+
+.option:hover {
+    border-color: var(--btn-color);
+}
+.option input {
+    display: none;
+}
+.checkmark {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
+input:checked + .checkmark {
+    background: var(--checkmark);
+    border-color: var(--checkmark);
+    color: white;
+    content: "✔";
+}
+
+.fp-btn:disabled {
+    background: #ccc;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+.fp-btn:hover:not(:disabled) {
+    background: var(--btn-hover-color);
+}
+.fp-btn:active:not(:disabled) {
+    box-shadow: 0 2px var(--btn-hover-color);
+    transform: translateY(2px);
+}

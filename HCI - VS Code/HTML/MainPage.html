@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/IMAGES/logo-f.png" type="image/png">
+    <title>Mission: Progress</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/CSS/MainPageStyle.css">
+</head>
+<body>
+    <div class="layout-container">
+        <div class="side-nav">
+            <div class="nav-item active" id="home-nav" title="Home"><img src="/IMAGES/home.png"></div>
+            <div class="nav-item" id="files-nav" title="Folders"><img src="/IMAGES/folder.png"></div>
+            <div class="nav-item" id="analytics-nav" title="Finances"> <img src="/IMAGES/finances.png"> </div>
+            <div class="nav-item" id="calendar-nav" title="Schedule"><img src="/IMAGES/schedule.png"></div>
+            <div class="nav-item" id="timer-nav" title="Lock-In Feature"> <img src="/IMAGES/timer.png"> </div>
+            <div class="nav-item" id="settings-nav" title="Settings"> <img src="/IMAGES/settings.png"></div>
+        </div>
+        
+        <div class="main-content">
+            <div class="container">
+                <!-- Home Page -->
+                <div id="home-page" class="page active">
+                 <div class="profile-header">
+                    <div class="profile-text">
+                      <h2>Hello, Alex!</h2>
+                      <p>April 22, 2025</p>
+                    </div>
+                    <div class="profile-pic">
+                      <img src="/IMAGES/Profile_pic.png" alt="User Profile" />
+                    </div>
+                  </div>
+                
+                  <div class="progress-section">
+                    <label>Progress:</label>
+                    <div class="progress-bar">
+                    </div>
+                  </div>
+                
+                  <div class="buttons">      
+                        <button id="addTodoButton" class="todo"><img src="/IMAGES/plus.png">TODO</button>
+                        <button> All</button>
+                        <button> Ongoing</button>
+                        <button> Missed</button>
+                        <button> Completed</button>
+                  </div>
+        
+                <div class="task-list" id="taskList">
+                    <h3 style="margin-bottom: 1rem;">Your Tasks</h3>
+                    <div id="tasksContainer">
+                    <p style="text-align:center;">No tasks yet.</p>
+                    </div>
+                </div>
+                </div>
+                
+                <!-- Folders Page -->
+                <div id="folders-page" class="page">
+                    <div class="main-header">Folders</div>
+                   <!---------------------------------Add Folder Button --------------------------------->
+                        <div class="search-container">
+                            <div class="add-folder">
+                                <button onclick="openModal()">+</button>
+                            </div>
+                            <!--------------------------------- Search Button ------------------------------------->
+                            <div class="search-box">
+                                <img src="/IMAGES/search-icon.png" alt="Search"/>
+                                <input type="text" id="searchInput" placeholder="Search Folder" onkeyup="searchFolders()" />
+                            </div>
+                            <!--------------------------------- Select All Button --------------------------------->
+                            <label id="selectAllLabel" style="display: none; align-items: center; gap: 5px;">
+                            <input type="checkbox" id="selectAll" onchange="toggleSelectAll(this)">
+                            Select All
+                            </label>
+                        </div>
+                        <!--------------------------------- Delete Button -------------------------------------->
+                        <div class="folders" id="folderList"></div>
+                        <div style="text-align: center; margin-top: 20px;">
+                        <button id="deleteBtn" onclick="deleteSelected()" style="display: none; background-color: #ff4d6d; color: white;
+                        padding: 10px 20px; border: none; border-radius: 25px; cursor: pointer;">
+                        Delete folder/s
+                        </button>
+                        </div>
+                        <!--------------------------------Modal (Color Options) --------------------------------->
+                        <div class="modal-folder" id="folderModal">
+                        <div class="modal-content-folder">
+                        <h3>Set Folder Details</h3>
+                        <div class="color-options">
+                        <div class="color-circle" style="background-color: #d33636;" data-color="#d33636"></div>
+                        <div class="color-circle" style="background-color: #ffb428;" data-color="#ffb428"></div>
+                        <div class="color-circle" style="background-color: #ffe600;" data-color="#ffe600"></div>
+                        <div class="color-circle" style="background-color: #4dc625;" data-color="#4dc625"></div>
+                        <div class="color-circle" style="background-color: #3181c2;" data-color="#3181c2"></div>
+                        <div class="color-circle" style="background-color: #7539a5;" data-color="#7539a5"></div>
+                        </div>
+                        <input type="text" id="folderNameInput" placeholder="Enter folder name">
+                        <br />
+                        <button onclick="createFolder()">CREATE</button>
+                        </div>
+                        </div>
+                </div>
+
+                <!-- Finances Page -->
+                <div id="analytics-page" class="page">
+                    <div class="finance-container">
+                        <div class="main-header">Finances</div>
+
+                        <div class="finance-summary">
+                            <div class="summary-row">
+                                <div class="summary-label">INCOME</div>
+                                <div class="summary-value" id="income-total">--</div>
+                            </div>
+                            <div class="summary-row">
+                                <div class="summary-label">EXPENSE</div>
+                                <div class="summary-value" id="expense-total">--</div>
+                            </div>
+                            <div class="summary-row">
+                                <div class="summary-label">BALANCE</div>
+                                <div class="summary-value" id="balance-total">--</div>
+                            </div>
+                        </div>
+
+                        <!-- New section for recent transactions -->
+                        <div class="recent-transactions">
+                            <div class="recent-transactions-header">
+                                Recent Transactions
+                                <span class="clear-all" id="clear-transactions">Clear All</span>
+                            </div>
+                            <div id="transactions-list">
+                                <div class="empty-transactions">No transactions yet</div>
+                            </div>
+                        </div>
+
+                        <div class="finance-tabs">
+                            <div class="finance-tab active" data-tab="income">INCOME</div>
+                            <div class="finance-tab" data-tab="expense">EXPENSE</div>
+                            <div class="finance-tab" data-tab="goals">GOALS</div>
+                        </div>
+
+
+                        <!-- Income Tab -->
+                        <div id="income-tab" class="tab-content active">
+                            <div class="income-list">
+                                <div class="finance-entry">
+                                    <div class="entry-icon">💵</div>
+                                    <div class="entry-details">
+                                        <div class="entry-name">Allowance</div>
+                                    </div>
+                                    <div class="entry-amount">-</div>
+                                    <div class="edit-entry">✏️</div>
+                                </div>
+                                <div class="finance-entry">
+                                    <div class="entry-icon">💼</div>
+                                    <div class="entry-details">
+                                        <div class="entry-name">Salary</div>
+                                    </div>
+                                    <div class="entry-amount">-</div>
+                                    <div class="edit-entry">✏️</div>
+                                </div>
+                                <div class="finance-entry">
+                                    <div class="entry-icon">➕</div>
+                                    <div class="entry-details">
+                                        <div class="entry-name">Others</div>
+                                    </div>
+                                    <div class="entry-amount"></div>
+                                    <div class="edit-entry">✏️</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Expense Tab -->
+                        <div id="expense-tab" class="tab-content">
+                            <div class="expense-list">
+                                <div class="finance-entry">
+                                    <div class="entry-icon">🍔</div>
+                                    <div class="entry-details">
+                                        <div class="entry-name">Food</div>
+                                    </div>
+                                    <div class="entry-amount">-</div>
+                                    <div class="edit-entry">✏️</div>
+                                </div>
+                                <div class="finance-entry">
+                                    <div class="entry-icon">🚌</div>
+                                    <div class="entry-details">
+                                        <div class="entry-name">Transportation</div>
+                                    </div>
+                                    <div class="entry-amount">-</div>
+                                    <div class="edit-entry">✏️</div>
+                                </div>
+                                <div class="finance-entry">
+                                    <div class="entry-icon">📚</div>
+                                    <div class="entry-details">
+                                        <div class="entry-name">School</div>
+                                    </div>
+                                    <div class="entry-amount">-</div>
+                                    <div class="edit-entry">✏️</div>
+                                </div>
+                                <div class="finance-entry">
+                                    <div class="entry-icon">➕</div>
+                                    <div class="entry-details">
+                                        <div class="entry-name">Others</div>
+                                    </div>
+                                    <div class="entry-amount"></div>
+                                    <div class="edit-entry">✏️</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Goals Tab -->
+                        <div id="goals-tab" class="tab-content">
+                            <div class="finance-entry">
+                                <div class="entry-details" style="width: 100%;">
+                                    <div class="entry-name">Gaming Laptop</div>
+                                    <div class="goals-progress">
+                                        <div class="progress-bar-goal" style="width: 34.5%;"></div>
+                                    </div>
+                                    <div style="text-align: right; margin-top: 5px; font-size: 12px;">34.5%</div>
+                                </div>
+                                <div class="edit-entry">✏️</div>
+                            </div>
+
+                            <div class="finance-entry">
+                                <div class="entry-icon">➕</div>
+                                <div class="entry-details">
+                                    <div class="entry-name">Add Goal</div>
+                                </div>
+                            </div>
+
+                            <!-- Goals Details View (initially hidden) -->
+                            <div id="goal-details" style="display: none;">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Your Goal" value="Gaming Laptop">
+                                    <input type="text" class="form-control" placeholder="Amount to Save" value="45,500" style="margin-top: 10px;">
+                                </div>
+
+                                <div style="text-align: center; margin: 20px 0; color: #888;">RECORDS</div>
+
+                                <div class="goals-list">
+                                    <div class="goal-record">
+                                        <div class="goal-amount">₱4,500</div>
+                                        <div class="goal-status">₱41,000 more to go!</div>
+                                    </div>
+                                    <div class="goal-record">
+                                        <div class="goal-amount">₱3,200</div>
+                                        <div class="goal-status">₱37,800 more to go!</div>
+                                    </div>
+                                    <div class="goal-record">
+                                        <div class="goal-amount">₱4,350</div>
+                                        <div class="goal-status">₱33,450 more to go!</div>
+                                    </div>
+                                    <div class="goal-record">
+                                        <div class="goal-amount">₱2,850</div>
+                                        <div class="goal-status">₱30,600 more to go!</div>
+                                    </div>
+                                    <div class="goal-record">
+                                        <div class="goal-amount">₱3,090</div>
+                                        <div class="goal-status">₱27,510 more to go!</div>
+                                    </div>
+                                    <div class="goal-record">
+                                        <div class="goal-amount">₱2,450</div>
+                                        <div class="goal-status">
+                                            ₱25,060 more to go!
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="total-saved">
+                                    Total Saved: ₱20,440
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Schedule Page -->
+                <div id="schedule-page" class="page">
+                    <div class="header">
+                        <div>
+                            <div class="title">Class Schedule</div>
+                            <div class="date" id="current-date">Monday, February 24</div>
+                        </div>
+                        <div class="add-button" id="add-class-button">+</div>
+                    </div>
+
+                    <div class="program-info">
+                        <div class="program-title">BS Information Technology • 2nd Year</div>
+                        <div class="program-subtitle">2024-25 • 2nd Sem</div>
+                    </div>
+
+                    <div class="button-container">
+                        <span class="edit-button">Edit</span>
+                    </div>
+
+                    <div class="schedule">
+                        <div class="column" id="monday-schedule">
+                            <div class="day-label">MON</div>
+                            <!-- Monday -->
+                            <div class="class-item">
+                                <div class="class-time">8:00 AM</div>
+                                <div class="class-name">WEB SYSTEMS</div>
+                                <div class="class-time">10:30 AM</div>
+                            </div>
+                            <div class="class-item green">
+                                <div class="class-time">10:30 AM</div>
+                                <div class="class-name">IT 115</div>
+                                <div class="class-time">12:00 PM</div>
+                            </div>
+                            <div class="class-item">
+                                <div class="class-time">1:00 PM</div>
+                                <div class="class-name">HCI</div>
+                                <div class="class-time">3:30 PM</div>
+                            </div>
+                        </div>
+                        <div class="column" id="tuesday-schedule">
+                            <div class="day-label">TUE</div>
+                            <!-- Tuesday -->
+                            <div class="class-item">
+                                <div class="class-time">8:00 AM</div>
+                                <div class="class-name">IT 115</div>
+                                <div class="class-time">10:30 AM</div>
+                            </div>
+                            <div class="class-item">
+                                <div class="class-time">1:00 PM</div>
+                                <div class="class-name">IT 112</div>
+                                <div class="class-time">3:30 PM</div>
+                            </div>
+                        </div>
+                        <div class="column" id="wednesday-schedule">
+                            <div class="day-label">WED</div>
+                            <!-- Wednesday -->
+                            <div class="class-item">
+                                <div class="class-time">8:00 AM</div>
+                                <div class="class-name">IT 116</div>
+                                <div class="class-time">10:30 AM</div>
+                            </div>
+                            <div class="class-item green">
+                                <div class="class-time">10:30 AM</div>
+                                <div class="class-name">IT 115</div>
+                                <div class="class-time">12:00 PM</div>
+                            </div>
+                            <div class="class-item">
+                                <div class="class-time">1:00 PM</div>
+                                <div class="class-name">IT 116</div>
+                                <div class="class-time">3:30 PM</div>
+                            </div>
+                        </div>
+                        <div class="column" id="thursday-schedule">
+                            <div class="day-label">THU</div>
+                            <!-- Thursday -->
+                            <div class="class-item green">
+                                <div class="class-time">8:00 AM</div>
+                                <div class="class-name">IT 112</div>
+                                <div class="class-time">10:30 AM</div>
+                            </div>
+                            <div class="class-item">
+                                <div class="class-time">1:00 PM</div>
+                                <div class="class-name">IT 115</div>
+                                <div class="class-time">3:30 PM</div>
+                            </div>
+                        </div>
+                        <div class="column" id="friday-schedule">
+                            <div class="day-label">FRI</div>
+                            <!-- Friday -->
+                            <div class="class-item">
+                                <div class="class-time">8:00 AM</div>
+                                <div class="class-name">COM. PROG.2</div>
+                                <div class="class-time">10:30 AM</div>
+                            </div>
+                            <div class="class-item green">
+                                <div class="class-time">3:00 PM</div>
+                                <div class="class-name">WEB SYSTEMS</div>
+                                <div class="class-time">5:30 PM</div>
+                            </div>
+                        </div>
+                        <div class="column" id="saturday-schedule">
+                            <div class="day-label">SAT</div>
+                            <!-- Saturday -->
+                            <div class="class-item">
+                                <div class="class-time">9:00 AM</div>
+                                <div class="class-name">ELECTIVE 1</div>
+                                <div class="class-time">12:00 PM</div>
+                            </div>
+                        </div>
+                        <div class="column" id="sunday-schedule">
+                            <div class="day-label">SUN</div>
+                            <!-- Sunday -->
+                            <div class="class-item green">
+                                <div class="class-time">2:00 PM</div>
+                                <div class="class-name">STUDY GROUP</div>
+                                <div class="class-time">5:00 PM</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New Schedule Page -->
+                <div id="new-schedule-page" class="new-schedule-page">
+                    <div class="back-button" id="back-to-schedule">
+                        ← New Schedule
+                    </div>
+                    <div class="schedule-form">
+                        <div class="image-placeholder">
+                            Click to Add Image
+                            <!-- Image placeholder -->
+                        </div>
+                        <div class="form-group">
+                            <label for="className">Class Name</label>
+                            <input type="text" id="className" class="form-control" placeholder="Enter class name">
+                        </div>
+                        <div class="form-group">
+                            <label for="classCode">Instructor</label>
+                            <input type="text" id="classCode" class="form-control" placeholder="Enter Instructor name">
+                        </div>
+                        <div class="form-group">
+                            <label for="classLocation">Class Location</label>
+                            <input type="text" id="classLocation" class="form-control" placeholder="Enter class location">
+                        </div>
+
+                        <div>
+                            <label>Schedule</label>
+                            <div class="days-selection">
+                                <div class="day-option" data-day="MON">M</div>
+                                <div class="day-option" data-day="TUE">T</div>
+                                <div class="day-option" data-day="WED">W</div>
+                                <div class="day-option" data-day="THU">Th</div>
+                                <div class="day-option" data-day="FRI">F</div>
+                                <div class="day-option" data-day="SAT">Sa</div>
+                                <div class="day-option" data-day="SUN">Su</div>
+                            </div>
+
+                            <div class="time-selection">
+                                <input type="time" id="startTime" class="form-control" style="width: 45%; display: inline-block;"> to
+                                <input type="time" id="endTime" class="form-control" style="width: 45%; display: inline-block;">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label>Color</label>
+                            <div class="colors-selection">
+                                <div class="color-option" style="background-color: #f9d5ca;"></div>
+                                <div class="color-option" style="background-color: #FFD6E0;"></div>
+                                <div class="color-option" style="background-color: #C1FF9B;"></div>
+                                <div class="color-option" style="background-color: #A2EEFF;"></div>
+                                <div class="color-option" style="background-color: #93C6FF;"></div>
+                                <div class="color-option" style="background-color: #A68BFF;"></div>
+                                <div class="color-option" style="background-color: #FF98E3;"></div>
+                            </div>
+                        </div>
+                        <button type="button" class="create-button" id="create-class-button">CREATE</button>
+                    </div>
+                </div>
+                
+                <!-- Timer Page -->
+                <div id="timer-page" class="page">
+                    <div class="main-header">Lock-In</div>
+                    <!-----------------------------------Main Content------------------------------------------>
+                    <div class="timer-container">
+                            <div class="search-box" style="margin: auto;">
+                                <img src="/IMAGES/search-icon.png" alt="Search" width="30" height="30" />
+                                <input type="text" id="searchInput" placeholder="Search Task"/>
+                            </div>
+                            <!-----------------------------------Start Timer------------------------------------------>
+                            <div class="button" onclick="togglePopupFooter('start')">
+                                <img src="/IMAGES/start-timer.png" alt="Start Timer" />
+                                Set Start Timer
+                            </div>
+                            <div class="output" id="startOutput"></div>
+                            <!-----------------------------------End Timer------------------------------------------>
+                            <div class="button" onclick="togglePopupFooter('end')">
+                                <img src="/IMAGES/end-timer.png" alt="End Timer" />
+                                Set End Timer
+                            </div>
+                            <div class="output" id="endOutput"></div>
+                            <!-----------------------------------Accessed App------------------------------------------>
+                            <div class="button" onclick="togglePopupFooter('app')">
+                                <img src="/IMAGES/key-icon.png" alt="Accessed App" />
+                                Accessed Application
+                            </div>
+                    </div>
+                
+                        <!----------------------------- Timer Popup (outside container)----------------------------->
+                        <div class="timer-footer" id="timerFooter">
+                            <p id="footerLabel">Set Time</p>
+                            <input type="time" id="footerTimeInput">
+                            <div class="popup-buttons">
+                            <button onclick="submitFooterTime()">Set</button>
+                            <button class="cancel" onclick="hideFooter()">Cancel</button>
+                        </div>
+                        </div>
+                        <!------------------------- Accessed App Popup (outside container)-------------------------->
+                        <div class="accessed-popup accessed-footer" id="accessedAppPopup">
+                            <p>Accessed Application</p>
+                            <div class="app-grid">
+                            <div class="app-item"><div class="plus">+</div><span>Add</span></div>
+                            <div class="app-item"><div class="plus">+</div><span>Add</span></div>
+                            <div class="app-item"><div class="plus">+</div><span>Add</span></div>
+                            <div class="app-item"><div class="plus">+</div><span>Add</span></div>
+                            <div class="app-item"><div class="plus">+</div><span>Add</span></div>
+                            <div class="app-item"><div class="plus">+</div><span>Add</span></div>
+                            </div>
+                            <div class="popup-buttons">
+                            <button class="cancel" onclick="hideFooter()">Close</button>
+                            </div>
+                        </div>
+                </div>
+                
+                <!-- Settings Page -->
+                <div id="settings-page" class="page">
+                    <div class="main-header">Settings</div>
+                <!-- Start here -->
+                    <article class="set-page">
+                    <img src="/IMAGES/Profile_pic.png" alt="profile pic">
+                        <p>Alex</p>
+                    </article>
+        
+                    <div id="settings-options">
+                        <div class="Settings-fieldset" data-target="edit-profile-page">
+                            <img src="/IMAGES/Edit.png"> Edit Profile
+                        </div>
+                        <div class="Settings-fieldset" data-target="my-achievement-page">
+                            <img src="/IMAGES/Achievement.png"> My Achievement
+                        </div>
+                        <div class="Settings-fieldset" data-target="notification-page">
+                            <img src="/IMAGES/switch.png"> Notification
+                        </div>
+                        <div class="Settings-fieldset" data-target="feedback-page">
+                            <img src="/IMAGES/Feedback.png"> Feedback
+                        </div>
+                        <div class="Settings-fieldset" data-target="change-password-page">
+                            <img src="/IMAGES/password_17086429.png"> Change Password
+                        </div>
+                        <div class="Settings-fieldset" data-target="request-verification-page">
+                            <img src="/IMAGES/Account_Verification.png"> Request Account Verification
+                        </div>
+                        <div class="Settings-fieldset" data-target="erase-content-page">
+                            <img src="/IMAGES/eraser_17030329.png"> Erase All Content
+                        </div>
+                    </div>
+                        <!-- Edit Profile Page -->
+                        <div id="edit-profile-page" class="settings-section">
+                            <button class="back-to-settings">← Back</button>
+                            <h2>Edit Profile</h2>
+                            <div class="container-profile">
+                                <div class="profile-image-area">
+                                <img src="/IMAGES/add-circle.svg" alt="Profile Picture" class="profile-image">
+                                <p class="profile-image-text">Profile Picture</p>
+                                </div>
+                            
+                                <form>
+                                    <div class="input-group">
+                                        <label for="username">Username</label>
+                                        <input type="text" id="username" name="username" required>
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" id="email" name="email" required>
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="birthdate">Birthdate</label>
+                                        <input type="date" id="birthdate" name="birthdate" required>
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="phone">Phone Number</label>
+                                        <input type="tel" id="phone" name="phone" required>
+                                    </div>
+                                </form>
+                                <button type="submit" class="submit-button">Confirm</button>
+                            </div>
+                        </div>
+                        <!-- Achievement Page -->
+                         <div id="my-achievement-page" class="settings-section">
+                            <button class="back-to-settings">← Back</button>
+                            <h2>My Achievement</h2>
+                            <div class="user-card">                                
+                                <h2 class="username">Hi, Alex!</h2>
+                                <p class="status">You're doing great!</p>
+                                <div class="achievements">
+                                    Achievements earned: <strong>1/12</strong>
+                                </div>
+                            </div>
+                            <div class="badge-wrapper">
+                                <div class="badge-container">
+                                    <div class="badge-title">First Steps</div>
+                                    <img class="badge-icon" src="/IMAGES/achievement1.png" alt="Badge Icon">
+                                    <div class="badge-description">Completed your first task</div>
+                                    <div class="badge-description"><i>Complete</i></div>
+                                </div>
+                                <div class="badge-container">
+                                    <div class="badge-title">On a Roll</div>
+                                    <img class="badge-icon" src="/IMAGES/achievement2.png" alt="Badge Icon">
+                                    <div class="badge-description">Completed 10 tasks in a row without skipping a day.</div>
+                                </div>
+                                <div class="badge-container">
+                                    <div class="badge-title">Early Bird</div>
+                                    <img class="badge-icon" src="/IMAGES/achievement3.png" alt="Badge Icon">
+                                    <div class="badge-description">Completed a task before 8 AM.</div>
+                                </div>
+                                <div class="badge-container">
+                                    <div class="badge-title">Night Owl</div>
+                                    <img class="badge-icon" src="/IMAGES/achievement4.png" alt="Badge Icon">
+                                    <div class="badge-description">Completed a task after midnight.</div>
+                                </div>
+                                <div class="badge-container">
+                                    <div class="badge-title">No Procastination</div>
+                                    <img class="badge-icon" src="/IMAGES/achievement5.png" alt="Badge Icon">
+                                    <div class="badge-description">Completed all tasks on time for a week.</div>
+                                </div>
+                                <div class="badge-container">
+                                    <div class="badge-title">Productivity Beast</div>
+                                    <img class="badge-icon" src="/IMAGES/achievement6.png" alt="Badge Icon">
+                                    <div class="badge-description">Completed 10+ tasks in a single day.</div>
+                                </div>
+                                <div class="badge-container">
+                                    <div class="badge-title">Centsibile Saver</div>
+                                    <img class="badge-icon" src="/IMAGES/achievement7.png" alt="Badge Icon">
+                                    <div class="badge-description">Saved money for the first time. </div>
+                                </div>
+                                <div class="badge-container">
+                                    <div class="badge-title">Penny Pincher</div>
+                                    <img class="badge-icon" src="/IMAGES/achievement8.png" alt="Badge Icon">
+                                    <div class="badge-description">Saved Money for 7 consecutive days.</div>
+                                </div>
+                                <div class="badge-container">
+                                    <div class="badge-title">Mission Accomplished</div>
+                                    <img class="badge-icon" src="/IMAGES/achievement9.png" alt="Badge Icon">
+                                    <div class="badge-description">Successfully saved up for your first goal.</div>
+                                </div>
+                                <div class="badge-container">
+                                    <div class="badge-title">Dream Builder</div>
+                                    <img class="badge-icon" src="/IMAGES/achievement10.png" alt="Badge Icon">
+                                    <div class="badge-description">Successfully saved up ₱10,000 pesos.</div>
+                                </div>
+                                <div class="badge-container">
+                                    <div class="badge-title">Power User</div>
+                                    <img class="badge-icon" src="/IMAGES/achievement11.png" alt="Badge Icon">
+                                    <div class="badge-description">Successfully finished all tasks in a month.</div>
+                                </div>
+                                <div class="badge-container">
+                                    <div class="badge-title">Minimalist Master</div>
+                                    <img class="badge-icon" src="/IMAGES/achievement12.png" alt="Badge Icon">
+                                    <div class="badge-description">Only spend ₱1000 pesos in a month.</div>
+                                </div>
+                            </div>
+   
+                        </div>
+                        <!-- Notification Page -->
+                         <div id="notification-page" class="settings-section">
+                            <button class="back-to-settings">← Back</button>
+                         </div>
+                        <!-- Feedback Page -->
+                        <div id="feedback-page" class="settings-section">
+                            <button class="back-to-settings">← Back</button>
+                            <h2>FEEDBACK</h2>
+                            <h4 class="question">What would you like to do?</h4>
+                            <div class="problem report-btn ">
+                                Report a Problem 
+                            </div>
+                            <div class="feature feature-btn" id="feat">
+                                Request a Feature
+                            </div>
+                        </div>
+                        <!-- Change Password Page -->
+                        <div id="change-password-page" class="settings-section">
+                            <button class="back-to-settings">← Back</button>
+                            <h2>Change Password</h2>
+                            <img class="lock-icon" src="https://cdn-icons-png.flaticon.com/512/3064/3064155.png" alt="Lock Icon">
+                            <p>Select what contact details should be used to reset your password.</p>                            
+                            <label class="option">
+                                <input type="radio" name="reset-option" value="phone" onclick="enableButton()">
+                                <div class="checkmark"></div>
+                                Contact Number: <br> +63 123-4567-890
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="reset-option" value="email" onclick="enableButton()">
+                                <div class="checkmark"></div>
+                                Email: <br> visionimpossible@gmail.com
+                            </label>
+                            <button class="fp-btn" id="continueBtn" disabled>Continue</button>
+                        </div>
+                        <!-- Request Acct Verification  Page -->
+                        <div id="request-verification-page" class="settings-section">
+                            <button class="back-to-settings">← Back</button>
+                                <h2>Account Verification</h2>
+                                <h3 style="text-align: center; margin-top: 20px;">Request has been sent!</h3>
+                                <h3 style="text-align: center; margin-top: 20px;">A code will be sent to you email once your account has been verified.</h3>        
+                        </div>
+                        <!-- Erase All Content -->
+                        <div id="erase-content-page" class="settings-section">
+                            <button class="back-to-settings">← Back</button>
+                            <h2>Erase All Content</h2>
+                            <p class="Noti">Are you sure that you want to remove all your content?</p>
+                            <hr>
+                            <p class="Noti">This will <span class="red-text"> REMOVE ALL </span><span class="thick-underline">tasks, achievements, schedules</span> and <span class="thick-underline">entries</span> you've added but 
+                                <span class="green-text"> WILL NOT AFFECT</span> your <span class="thick-underline">account, personal details</span>, or
+                                <span class="thick-underline">login information</span>.</p>
+                            <hr>
+                            <p class="Noti"><span class="red-text"><i>This action cannot be undone. </i></span></p>
+                            <div class="button-group">
+                                <button class="btn-submit">Confirm</button>
+                                <button class="btn-cancel">Cancel</button>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Create Task Modal -->
+    <div id="createTaskModal" class="task-modal">
+        <div class="task-modal-content">
+            <span class="task-close-button">&times;</span>
+            <h2>Create Task</h2>
+            <input type="text" placeholder="Enter Task Name" />
+            <div class="type-buttons">
+                <button id="btnNew" class="active">New</button>
+                <button id="btnFolder">Folder</button>
+            </div>
+            <label for="labelSelect">Label:</label>
+            <select id="labelSelect">
+                <option>Daily Task</option>
+                <option>Add a New Label</option>
+            </select>
+            <label for="deadlineToggle">Set Deadline:</label>
+            <input type="date" id="deadlineToggle" class="styled-date-input" />
+            <button id="confirmButton" class="confirm-button">CONFIRM</button>
+        </div>
+    </div>
+    <!-- Edit Degree Program Modal -->
+    <div class="modal-overlay" id="editModal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">Degree Program</div>
+                <div class="modal-close">&times;</div>
+            </div>
+            <form id="programForm">
+                <div class="form-group">
+                    <label for="programName">Degree Program</label>
+                    <input type="text" id="programName" class="form-control" placeholder="BS Information Technology" value="BS Information Technology">
+                </div>
+                <div class="form-group">
+                    <label for="academicYear">Academic Year / School Year</label>
+                    <input type="text" id="academicYear" class="form-control" placeholder="2024-25" value="2024-25">
+                </div>
+                <div class="form-group">
+                    <label for="yearLevel">Year Level</label>
+                    <input type="text" id="yearLevel" class="form-control" placeholder="2nd Year" value="2nd Year">
+                </div>
+                <div class="form-group">
+                    <label for="semester">Semester</label>
+                    <input type="text" id="semester" class="form-control" placeholder="2nd Sem" value="2nd Sem">
+                </div>
+                <button type="submit" class="confirm-button">CONFIRM</button>
+            </form>
+        </div>
+    </div>
+    <!-- Class Details Modal -->
+    <div class="modal-overlay" id="classDetailsModal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title" id="modalClassName">Class Name</div>
+                <div class="modal-close" id="closeClassModal">&times;</div>
+            </div>
+            <div class="modal-body">
+                <div class="class-details">
+                    <p><strong>Time:</strong> <span id="modalClassTime"></span></p>
+                    <p id="modalInstructorRow"><strong>Instructor:</strong> <span id="modalInstructor"></span></p>
+                    <p id="modalLocationRow"><strong>Location:</strong> <span id="modalLocation"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Feedback Modal -->
+<div class="feedback-modal-overlay" id="feedbackModal">
+    <div class="feedback-modal">
+      <span class="feedback-close" id="feedbackClose">&times;</span>
+      <h2 class="feedback-title">Send Feedback</h2>
+      <textarea id="feedbackText" placeholder="Write your message..."></textarea>
+  
+      <label class="attach-label">
+        Attach Image
+        <input type="file" id="feedbackImage" accept="image/*">
+      </label>
+  
+      <div class="feedback-buttons">
+        <button id="feedbackCancel" class="cancel-btn">Cancel</button>
+        <button id="feedbackSend" class="send-btn">Send</button>
+      </div>
+    </div>
+  </div>
+  
+    
+<!-- JAVASCRIPT FILE -->
+<script src="./script.js"></script>
+</body>
+</html>
