@@ -20,7 +20,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: url('/IMAGES/main-bg-img.png');
+    background: url('../IMAGES/main-bg-img.png');
     background-size: cover;
     text-align: center;
 }
