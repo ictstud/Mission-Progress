@@ -20,7 +20,7 @@
 body {
     display: flex;
     min-height: 100vh;
-    background-image: url("/IMAGES/main-bg-img.png");
+    background-image: url("../IMAGES/main-bg-img.png");
     background-size: cover;
 }
 
